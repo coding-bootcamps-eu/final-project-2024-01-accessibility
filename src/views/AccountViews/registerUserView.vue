@@ -112,6 +112,9 @@ export default {
   align-self: center;
   min-height: 3rem;
 }
+.button-register {
+  align-self: center;
+}
 
 .logo-img-register {
   width: 100%;

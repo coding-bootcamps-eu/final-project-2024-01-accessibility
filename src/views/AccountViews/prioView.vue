@@ -16,7 +16,7 @@
     :placeholder="'Breite in cm'"
   />
 
-  <NavButton Navigation="Weiter" @click="saveDataAndOpenPopup" />
+  <NavButton class="button-prio" Navigation="Weiter" @click="saveDataAndOpenPopup" />
 
   <div v-if="showPopup" class="popup">
     <div class="popup-content">
@@ -122,10 +122,15 @@ export default {
   color: var(--black);
   border: 1px solid var(--black);
   min-height: 3rem;
+  width: 14.5rem;
+  align-self: center;
 }
 .label-prio {
-  margin-left: 2rem;
+  margin-left: 3rem;
   margin-top: 1.5rem;
+}
+.button-prio {
+  align-self: center;
 }
 .popup {
   position: fixed;

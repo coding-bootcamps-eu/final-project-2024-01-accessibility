@@ -56,8 +56,16 @@
         : 'mobilityAssistance width'
     "
   />
-  <LöschenButton :Löschen="'Account-Löschen'" @click="confirmDelete"></LöschenButton>
-  <NavButton :Navigation="'Speichern'" @click="validateAndSaveUserData"></NavButton>
+  <LöschenButton
+    class="button-account"
+    :Löschen="'Account-Löschen'"
+    @click="confirmDelete"
+  ></LöschenButton>
+  <NavButton
+    class="button-account"
+    :Navigation="'Speichern'"
+    @click="validateAndSaveUserData"
+  ></NavButton>
 
   <div v-if="showConfirmation" class="confirmation-popup">
     <div class="confirmation-message">
@@ -282,6 +290,9 @@ export default {
   padding: 20px;
   border: 4px solid var(--black);
   z-index: 9999;
+}
+.button-account{
+  align-self: center;
 }
 .headline-account {
   align-self: center;
