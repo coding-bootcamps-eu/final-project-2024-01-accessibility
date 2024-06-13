@@ -363,13 +363,21 @@ export default {
   padding: 0.5rem;
   align-self: center;
 }
-.popup-mail-button .password-conditions {
-  background: var(--white);
+.popup-mail-button {
+  background-color: var(--white);
   border-radius: 1rem;
   padding: 1rem;
   width: 90%;
   align-self: center;
 }
+.password-conditions {
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 90%;
+  align-self: center;
+}
+
 .password-conditions-list {
   list-style: none;
 }
