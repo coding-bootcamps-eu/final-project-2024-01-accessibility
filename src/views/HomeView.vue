@@ -1,10 +1,10 @@
 <template>
   <div class="background-home"></div>
 
-  <blurEffect v-if="appPopup || searchFunctionPopup"></blurEffect>
+  <blurEffect v-if="(appPopup || searchFunctionPopup) && !hideTutorials"></blurEffect>
 
   <!--  Popup zur Vorstellung der APP  -->
-  <div class="app-popup-container" v-if="appPopup">
+  <div class="app-popup-container" v-if="appPopup && !hideTutorials">
     <svg
       class="app-svg-popup"
       viewBox="0 0 100 100"
@@ -54,7 +54,7 @@
   </div>
 
   <!--  Popup zur Empfehlung der Suchfunktion  -->
-  <div class="searchfunction-popup-container" v-if="searchFunctionPopup">
+  <div class="searchfunction-popup-container" v-if="searchFunctionPopup && !hideTutorials">
     <svg
       class="searchfunction-svg-popup"
       viewBox="0 0 100 100"
@@ -165,7 +165,8 @@ export default {
     return {
       store: storeData(),
       searchFunctionPopup: false,
-      appPopup: true
+      appPopup: true,
+      hideTutorials: false
     }
   },
   methods: {
@@ -175,6 +176,19 @@ export default {
     appClosePopup() {
       this.appPopup = false
       this.searchFunctionPopup = true
+    },
+    savePreference() {
+      console.log('Saving preference:', this.hideTutorials)
+      localStorage.setItem('hideTutorials', JSON.stringify(this.hideTutorials))
+    }
+  },
+
+  mounted() {
+    const savedPreference = localStorage.getItem('hideTutorials')
+    console.log('Loaded preference:', savedPreference)
+    if (savedPreference !== null) {
+      this.hideTutorials = JSON.parse(savedPreference)
+      console.log('Applied preference:', this.hideTutorials)
     }
   },
   created() {
