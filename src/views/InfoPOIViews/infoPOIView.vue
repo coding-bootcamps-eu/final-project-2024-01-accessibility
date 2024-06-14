@@ -2,7 +2,7 @@
   <div class="background-info"></div>
 
   <div class="header-buttons">
-    <RouterLink :to="{ name: 'searchresultlist' }"> <BackArrow /></RouterLink>
+    <button @click="goBackToTheLastPage" class="back-arrow"><BackArrow /></button>
     <RouterLink :to="{ name: 'home' }"> <headerLogo /></RouterLink>
   </div>
   <br />
@@ -102,6 +102,9 @@ export default {
   methods: {
     removePoi() {
       this.$router.push({ name: 'searchresultlist' })
+    },
+    goBackToTheLastPage() {
+      this.$router.go(-1)
     }
   },
   computed: {
@@ -216,5 +219,11 @@ h2 {
   position: absolute;
   top: 70px;
   right: 15px;
+}
+.back-arrow {
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  margin-top: 0px;
 }
 </style>
