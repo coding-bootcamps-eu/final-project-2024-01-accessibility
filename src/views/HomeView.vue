@@ -142,10 +142,14 @@
     </RouterLink>
   </div>
   <div class="tutorial-settings">
-    <label>
-      <input type="checkbox" v-model="hideTutorials" @change="savePreference" />
-      Hide Tutorials
-    </label>
+    <input
+      class="checkbox-input"
+      type="checkbox"
+      id="checkbox"
+      v-model="hideTutorials"
+      @change="savePreference"
+    />
+    <label class="checkbox-label" for="checkbox"> Hide Tutorials </label>
   </div>
 </template>
 <script>
@@ -383,6 +387,41 @@ export default {
   margin-left: auto;
   margin-right: auto;
   padding: 10px 20px;
+}
+.tutorial-settings {
+  align-self: center;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 2rem auto;
+  gap: 0.2rem;
+  place-content: center;
+}
+
+.checkbox-input {
+  -webkit-appearance: none;
+  background-color: var(--white);
+  margin-top: 0.5rem;
+  font: inherit;
+  color: var(--black);
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid var(--black);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+.checkbox-input:checked::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--black);
+}
+.checkbox-input:checked::before {
+  transform: scale(1);
 }
 
 #app {
