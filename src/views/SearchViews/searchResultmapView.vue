@@ -49,6 +49,7 @@ export default {
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(this.map)
+        L.control.scale({ imperial: false }).addTo(this.map)
 
         // Legende erstellen
         let legend = L.control({ position: 'bottomleft' })
