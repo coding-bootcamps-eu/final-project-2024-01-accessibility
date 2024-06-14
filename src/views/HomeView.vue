@@ -141,6 +141,12 @@
       </button>
     </RouterLink>
   </div>
+  <div class="tutorial-settings">
+    <label>
+      <input type="checkbox" v-model="hideTutorials" @change="savePreference" />
+      Hide Tutorials
+    </label>
+  </div>
 </template>
 <script>
 import { storeData } from '@/stores/store.js'
