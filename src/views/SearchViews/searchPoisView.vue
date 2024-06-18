@@ -134,14 +134,11 @@ export default {
   data() {
     return {
       store: storeData(),
-      searchPoiPopup: true
+      searchPoiPopup: true,
+      hideTutorials: localStorage.getItem('hideTutorials') === 'true'
     }
   },
-  computed: {
-    hideTutorials() {
-      return localStorage.getItem('hideTutorials') === 'true'
-    }
-  },
+
   mounted() {
     const rangeinputField = document.querySelector('#idRangeInput')
     rangeinputField.addEventListener('input', this.saveInputValue)

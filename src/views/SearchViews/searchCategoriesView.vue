@@ -100,14 +100,11 @@ export default {
     return {
       store: storeData(),
       isPressed: null,
-      searchcategoryPopup: true
+      searchcategoryPopup: true,
+      hideTutorials: localStorage.getItem('hideTutorials') === 'true'
     }
   },
-  computed: {
-    hideTutorials() {
-      return localStorage.getItem('hideTutorials') === 'true'
-    }
-  },
+
   created() {
     let currentUserID = localStorage.getItem('currentUserID').replace(/"/g, '')
     this.store.temporaryData.ownPoisList = this.store.temporaryData.currentPois.filter(
