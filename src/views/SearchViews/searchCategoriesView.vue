@@ -1,9 +1,9 @@
 <template>
   <BackgroundGradient />
 
-  <blurEffect v-if="searchcategoryPopup"></blurEffect>
+  <blurEffect v-if="searchcategoryPopup && !hideTutorials"></blurEffect>
   <!--  Popup zur Empfehlung der kategoriewahl  -->
-  <div class="category-popup-container" v-if="searchcategoryPopup">
+  <div class="category-popup-container" v-if="searchcategoryPopup && !hideTutorials">
     <svg
       class="category-svg-popup"
       viewBox="0 0 100 100"
@@ -101,6 +101,11 @@ export default {
       store: storeData(),
       isPressed: null,
       searchcategoryPopup: true
+    }
+  },
+  computed: {
+    hideTutorials() {
+      return localStorage.getItem('hideTutorials') === 'true'
     }
   },
   created() {
