@@ -32,6 +32,12 @@
             ✅ {{ detailcategorie }}
           </div>
         </div>
+        <div class="address-container">
+          Adresse:
+          <span class="address-text"
+            >{{ favoritePoi.city }}, {{ favoritePoi.street }} {{ favoritePoi.number }}</span
+          >
+        </div>
       </router-link>
     </button>
   </div>
@@ -62,11 +68,6 @@ export default {
     await this.store.getPoiDataFromAPI()
     await this.store.getUserDataFromAPI()
     this.store.getDataFromCurrentUser()
-    console.log(
-      'this.store.temporaryData.currentUserData',
-      this.store.temporaryData.currentUserData
-    )
-
     this.store.getDataFromFavoritePois()
   }
 }
@@ -126,6 +127,10 @@ export default {
 }
 .headline-text {
   margin-bottom: 30px;
+}
+
+.address-text {
+  font-weight: 200;
 }
 @media screen and (min-width: 600px) {
   .favoritelist-button {
