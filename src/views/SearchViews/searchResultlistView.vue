@@ -48,7 +48,7 @@
   </div>
 
   <div class="header-buttons">
-    <RouterLink :to="{ name: 'searchoptionalcategorie' }"> <BackArrow /></RouterLink>
+    <RouterLink :to="backLink"> <BackArrow /></RouterLink>
     <RouterLink :to="{ name: 'home' }"> <headerLogo /></RouterLink>
     <RouterLink :to="{ name: 'searchresultmap' }"><EarthMap /></RouterLink>
   </div>
@@ -120,6 +120,15 @@ export default {
       store: storeData(),
       resultlistPopup: true,
       hideTutorials: localStorage.getItem('hideTutorials') === 'true'
+    }
+  },
+  computed: {
+    backLink() {
+      if (this.store.temporaryData.choosenCategory.trim() === 'Alle') {
+        return { name: 'searchcategorie' }
+      } else {
+        return { name: 'searchoptionalcategorie' }
+      }
     }
   },
 
