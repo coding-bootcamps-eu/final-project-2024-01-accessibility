@@ -32,6 +32,14 @@
             ✅ {{ detailcategorie }}
           </div>
         </div>
+        <div class="address-container">
+          <img
+            class="location-list-icon"
+            src="@/assets/icons/location-indicator.png"
+            alt="location-logo"
+          />
+          &nbsp; {{ favoritePoi.city }}, {{ favoritePoi.street }} {{ favoritePoi.number }}
+        </div>
       </router-link>
     </button>
   </div>
@@ -62,11 +70,6 @@ export default {
     await this.store.getPoiDataFromAPI()
     await this.store.getUserDataFromAPI()
     this.store.getDataFromCurrentUser()
-    console.log(
-      'this.store.temporaryData.currentUserData',
-      this.store.temporaryData.currentUserData
-    )
-
     this.store.getDataFromFavoritePois()
   }
 }
@@ -126,6 +129,16 @@ export default {
 }
 .headline-text {
   margin-bottom: 30px;
+}
+.address-container {
+  font-weight: 200;
+  align-self: start;
+  margin-top: 4px;
+  margin-left: 4px;
+  text-align: left;
+}
+.location-list-icon {
+  width: 10px;
 }
 @media screen and (min-width: 600px) {
   .favoritelist-button {

@@ -74,6 +74,16 @@
           >
             ✅ {{ detailcategorie }}
           </div>
+          <div class="address-container">
+            <img
+              class="location-list-icon"
+              src="@/assets/icons/location-indicator.png"
+              alt="location-logo"
+            />
+            <span class="address-text"
+              >&nbsp; {{ poi.city }}, {{ poi.street }} {{ poi.number }}</span
+            >
+          </div>
         </div>
         <div class="searchlist-distance">
           Entfernung: <b>{{ poi.currentSearchDistance }}</b> Meter
@@ -211,6 +221,15 @@ export default {
   position: absolute;
   top: 44px;
   right: 8px;
+}
+.location-list-icon {
+  width: 10px;
+}
+.address-container {
+  align-self: start;
+  margin-top: 4px;
+  margin-left: 4px;
+  text-align: left;
 }
 
 @media screen and (min-width: 600px) {
