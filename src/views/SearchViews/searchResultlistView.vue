@@ -1,9 +1,9 @@
 <template>
   <BackgroundGradient />
 
-  <blurEffect v-if="resultlistPopup"></blurEffect>
+  <blurEffect v-if="resultlistPopup && !hideTutorials"></blurEffect>
   <!--  INFO POPUP für die resultlistview -->
-  <div class="resultlist-popup-container" v-if="resultlistPopup">
+  <div class="resultlist-popup-container" v-if="resultlistPopup && !hideTutorials">
     <svg
       class="resultlist-svg-popup"
       viewBox="0 0 100 100"
@@ -108,9 +108,11 @@ export default {
   data() {
     return {
       store: storeData(),
-      resultlistPopup: true
+      resultlistPopup: true,
+      hideTutorials: localStorage.getItem('hideTutorials') === 'true'
     }
   },
+
   mounted() {
     this.store.checkForFilterOptions()
   }
