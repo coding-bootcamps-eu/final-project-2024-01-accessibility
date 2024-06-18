@@ -1,10 +1,10 @@
 <template>
   <div class="background-home"></div>
 
-  <blurEffect v-if="appPopup || searchFunctionPopup"></blurEffect>
+  <blurEffect v-if="(appPopup || searchFunctionPopup) && !hideTutorials"></blurEffect>
 
   <!--  Popup zur Vorstellung der APP  -->
-  <div class="app-popup-container" v-if="appPopup">
+  <div class="app-popup-container" v-if="appPopup && !hideTutorials">
     <svg
       class="app-svg-popup"
       viewBox="0 0 100 100"
@@ -54,7 +54,7 @@
   </div>
 
   <!--  Popup zur Empfehlung der Suchfunktion  -->
-  <div class="searchfunction-popup-container" v-if="searchFunctionPopup">
+  <div class="searchfunction-popup-container" v-if="searchFunctionPopup && !hideTutorials">
     <svg
       class="searchfunction-svg-popup"
       viewBox="0 0 100 100"
@@ -141,6 +141,16 @@
       </button>
     </RouterLink>
   </div>
+  <div class="tutorial-settings">
+    <input
+      class="checkbox-input"
+      type="checkbox"
+      id="checkbox"
+      v-model="hideTutorials"
+      @change="savePreference"
+    />
+    <label class="checkbox-label" for="checkbox"> Hide Tutorials </label>
+  </div>
 </template>
 <script>
 import { storeData } from '@/stores/store.js'
@@ -159,7 +169,8 @@ export default {
     return {
       store: storeData(),
       searchFunctionPopup: false,
-      appPopup: true
+      appPopup: true,
+      hideTutorials: false
     }
   },
   methods: {
@@ -169,6 +180,19 @@ export default {
     appClosePopup() {
       this.appPopup = false
       this.searchFunctionPopup = true
+    },
+    savePreference() {
+      console.log('Saving preference:', this.hideTutorials)
+      localStorage.setItem('hideTutorials', JSON.stringify(this.hideTutorials))
+    }
+  },
+
+  mounted() {
+    const savedPreference = localStorage.getItem('hideTutorials')
+    console.log('Loaded preference:', savedPreference)
+    if (savedPreference !== null) {
+      this.hideTutorials = JSON.parse(savedPreference)
+      console.log('Applied preference:', this.hideTutorials)
     }
   },
   created() {
@@ -363,6 +387,41 @@ export default {
   margin-left: auto;
   margin-right: auto;
   padding: 10px 20px;
+}
+.tutorial-settings {
+  align-self: center;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 2rem auto;
+  gap: 0.2rem;
+  place-content: center;
+}
+
+.checkbox-input {
+  -webkit-appearance: none;
+  background-color: var(--white);
+  margin-top: 0.5rem;
+  font: inherit;
+  color: var(--black);
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid var(--black);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+.checkbox-input:checked::before {
+  content: '';
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--black);
+}
+.checkbox-input:checked::before {
+  transform: scale(1);
 }
 
 #app {

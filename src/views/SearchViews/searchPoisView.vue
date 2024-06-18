@@ -1,7 +1,7 @@
 <template>
   <BackgroundGradient />
 
-  <blurEffect v-if="searchPoiPopup"></blurEffect>
+  <blurEffect v-if="searchPoiPopup && !hideTutorials"></blurEffect>
 
   <header>
     <div class="header-buttons">
@@ -10,7 +10,7 @@
     </div>
   </header>
   <!--  INFO POPUP für den standort bestimmungsbutton -->
-  <div class="searchpoi-popup-container" v-if="searchPoiPopup">
+  <div class="searchpoi-popup-container" v-if="searchPoiPopup && !hideTutorials">
     <svg
       class="searchpoi-svg-popup"
       viewBox="0 0 100 100"
@@ -134,9 +134,11 @@ export default {
   data() {
     return {
       store: storeData(),
-      searchPoiPopup: true
+      searchPoiPopup: true,
+      hideTutorials: localStorage.getItem('hideTutorials') === 'true'
     }
   },
+
   mounted() {
     const rangeinputField = document.querySelector('#idRangeInput')
     rangeinputField.addEventListener('input', this.saveInputValue)
