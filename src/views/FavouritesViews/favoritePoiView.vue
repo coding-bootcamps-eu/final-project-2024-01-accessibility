@@ -3,7 +3,7 @@
   <div class="header-buttons">
     <RouterLink :to="{ name: 'home' }"> <BackArrow /></RouterLink>
     <RouterLink :to="{ name: 'home' }"> <headerLogo /></RouterLink>
-    <RouterLink :to="{ name: '' }"><EarthMap /></RouterLink>
+    <RouterLink :to="{ name: 'favoritemap' }"><EarthMap /></RouterLink>
   </div>
   <HeadLine
     Headline="Hier findest du alle deine favorisierten Orte"
